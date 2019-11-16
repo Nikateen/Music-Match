@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+		<title>Music Match</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+<style>
+  body {
+  font-family: "Lato", sans-serif;
+  background-color: #111;
+}
+input[type=checkbox] {
+display:none;
+}
+input[type=checkbox] + label
+{
+background: #999;
+height: 16px;
+width: 16px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input[type=checkbox]:checked + label
+{
+background: #0080FF;
+height: 16px;
+width: 16px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+.sidenav {
+  height: 100%;
+  width: 450px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:rgb(5,5,5);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.main {
+  margin-left: 160px; 
+  font-size: 15px; 
+  padding: 0px 350px;
+  color: azure;
+}
+
+</style>
+</head>
+<body id="body_it">
+		<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">Music Match</a>
+					<nav id="nav">
+							<a href="index.html">Home</a>
+							<a href="about.html">About</a>
+							<a href="explore.html">Explore</a>
+							<a href="elements.html">My Library</a>
+					</nav>
+
+				</div>
+			</header>
+<br><br><br>
+
+<div class="sidenav">
+  <br><br><br>
+  <br><br><br>
+  <br><br><br>
+  
+    
+    <a href="#"><h4>Pick By Artist</h4></a>
+    
+  </div>
+<div class="main">
+    <h4>Artists Available</h4>
+    <div class="box">
+      <input type='checkbox' name='genre' value="Billie Eilish" id="thing"/><label for="thing"></label> <label>Billie Eilish</label>
+      <br>
+      <input type='checkbox' name='genre' value="Eminem" id="thing1"/><label for="thing1"></label> <label>Eminem</label>
+      <br>
+      <input type='checkbox' name='genre' value="Taylor Swift" id="thing2"/><label for="thing2"></label> <label>Taylor Swift</label>
+      <br>
+      <input type='checkbox' name='genre' value="Post Malone" id="thing3"/><label for="thing3"></label> <label>Post Malone</label>
+      <br>
+      <input type='checkbox' name='genre' value="Lewis Capaldi" id="thing4"/><label for="thing4"></label> <label>Lewis Capaldi</label>
+      </div>
+    <ul class="actions">
+        &nbsp;<li><a href="#" class="button alt" id="send_it" onclick="printChecked()"><h2>Submit</h2></a></li>
+        </ul>
+</div>
+</body>
+<script>
+  var checkedValue = null; 
+
+function printChecked(){
+				var items=document.getElementsByName('genre');
+				var selectedItems="";
+				for(var i=0; i<items.length; i++){
+					if(items[i].type=='checkbox' && items[i].checked==true)
+						{selectedItems+=items[i].value+"\n";
+            document.cookie="artist"+toString(i)+"="+items[i].value+";"
+            }
+				}
+        var x=document.cookie;
+				alert(selectedItems);
+
+      allcookies=document.cookie;
+      cookiearray = allcookies.split(';');
+               
+               // Now take key value pair out of this array
+               for(var i=0; i<cookiearray.length; i++) {
+                  name = cookiearray[i].split('=')[0];
+                  value = cookiearray[i].split('=')[1];
+                  console.log("Key is : " + name + " and Value is : " + value);
+               }
+}
+
+  </script>
+</html> 
+
