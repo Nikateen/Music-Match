@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="../src/scripts/logincheck.js"></script>
+
+    <title>Music Match</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body id="body_it">
+    <style>
+            #body_it {
+                background-color: black;
+            }
+        </style>
+    
+        <!-- Header -->
+        <header id="header">
+            <div class="inner">
+                <a href="../index.html" class="logo">Music Match</a>
+                <nav id="nav">
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="explore.html">Explore</a>
+                    <a href="mylib.html">My Library</a>
+                    <a id="logged" href="userinfo.html"> My Profile </a>
+                    <a id="notlogged" href="login.html">Login</a>
+                    
+                    
+                </nav>
+            </div>
+        </header>
+        <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+        <br> <br><br><br><br>
+    <center> <h4 id="username">no name found</h4> </center>
+    <center> <h4 id="email">no email found</h4> </center>
+    <center> <h4 id="emailVerified">Email has not been verified</h4> </center>
+    <center> <h4 id="uid">no uid found</h4> </center>
+    <center> <input type="button" id="logout" value="Log Out"></input> </center>
+    <script>
+        performLogout = function() {
+            firebase.auth().signOut().then(function () {
+                window.location.replace("../index.html");
+            }).catch(function (error) {
+                alert("an error occured :",error);
+            });
+        }
+
+        document.getElementById("logout").addEventListener("click", performLogout);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+			if (user) {
+				// User is signed in.
+				var displayName = user.displayName;
+				var email = user.email;
+				var emailVerified = user.emailVerified;
+				var photoURL = user.photoURL;
+				var isAnonymous = user.isAnonymous;
+				var uid = user.uid;
+				var providerData = user.providerData;
+                
+                if(displayName){
+                    document.getElementById("username").innerHTML=displayName;
+                    document.getElementById("email").innerHTML=email;
+                    if(emailVerified){
+                        document.getElementById("emailVerified").innerHTML="Email has been verified";
+                    }
+                    document.getElementById("uid").innerHTML=uid;
+                }
+               
+			} else {
+
+			}
+		});
+
+    </script>
+
+</body>
+
+</html>

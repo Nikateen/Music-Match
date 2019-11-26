@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Music Match</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../styles.css" />
+	</head>
+	<style>
+		#body_it{
+			background-color: black;
+			
+		}
+		#col{
+			color: blanchedalmond;
+		}
+		.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
+
+		
+		</style>
+	<body id="body_it" text="white">
+
+		
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">Music Match</a>
+					<nav id="nav">
+							<a href="../index.html">Home</a>
+							<a href="about.html">About</a>
+							<a href="explore.html">Explore</a>
+							<a href="mylib.html">My Library</a>
+							<a id="logged" href="userinfo.html"> My Profile </a>
+				      		<a id="notlogged" href="login.html">Login</a>
+					</nav>
+
+				</div>
+			</header>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+		<!-- Main -->
+			<section id="main" >
+				<div class="inner">
+					<header class="major special">
+						<h1>About</h1>
+						<br>
+						<br>
+					</header>
+					<h3>Many people listen to the same few songs on repeat</h3>
+					<p id="col">We dont like to explore new and varied music; Thus, people end up playing the same track over and over again.This continues until either the song is ruined for them and they cannot physically listen to it again or they push it to the back of a playlist never to be seen again. Our website offers a small solution to this problem by instantly providing you with samples of new songs based on a few criteria, helping you burst out of your "playlist bubble"</p>
+					<br><br>
+					<p id="col">Created by Nikhil KR and Ruchira Vadiraj for our UE18CS204 Project</p>
+					<p></p>
+				</div>
+			</section>
+			<div class="row text-center" >
+					<!-- Team item-->
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<div class="col-xl-3 col-sm-6 mb-5">
+					  <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../src/images/nik.PNG" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+						<h5 class="mb-0">Nikhil K R</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+						<ul class="social mb-0 list-inline mt-3">
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					  </div>
+					</div>
+					<!-- End-->
+			  
+					<!-- Team item-->
+					&emsp;&emsp;
+					<div class="col-xl-3 col-sm-6 mb-5">
+					  <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../src/images/ruc.PNG" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+						<h5 class="mb-0">Ruchira R Vadiraj</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+						<ul class="social mb-0 list-inline mt-3">
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+						  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+					<!-- End-->
+			  <br><br>
+					
+
+		<!-- 
+			<section id="footer">
+				<div class="inner">
+					<header>
+						<h2>Get in Touch</h2>
+					</header>
+					<form method="post" action="#">
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message" onclick="exec()" class="alt" /></li>
+						</ul>
+					</form>
+				</div>
+			</section>
+		Footer -->
+
+		<!-- Scripts -->
+			<script src="/__/firebase/7.5.0/firebase-app.js"></script>
+			<script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+			<script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+			<script src="/__/firebase/init.js"></script>
+			<script src="../src/scripts/logincheck.js"></script>
+
+
+	</body>
+</html>
