@@ -63,7 +63,7 @@
 					</header>
 					<p>We'll keep you bouncing on your feet<br></p>
 					<ul class="actions">
-						<li><a href="pages/recom.html" class="button alt" onclick="">Yas</a></li>
+						<li><a href="recom.html" class="button alt" id = "popbutton">Yas</a></li>
 					</ul>
 				</div>
 			</article>
@@ -75,7 +75,7 @@
 					</header>
 					<p>Here's a great band for you to checkout<br></p>
 					<ul class="actions">
-						<li><a href="pages/recom.html" class="button alt" onclick="">Take it all in</a></li>
+						<li><a href="recom.html" class="button alt" id="ajrbutton" >Take it all in</a></li>
 					</ul>
 				</div>
 			</article>
@@ -87,7 +87,7 @@
 					</header>
 					<p>Listen to the best of the best</p>
 					<ul class="actions">
-						<li><a href="pages/recom.html" class="button alt" onclick="">Get ready to let your hair down</a></li>
+						<li><a href="recom.html" class="button alt" id="rockbutton">Get ready to let your hair down</a></li>
 					</ul>
 				</div>
 			</article>
@@ -141,17 +141,25 @@
 	function AJR(){
 		document.cookie = "typeSelected=Artists";
   		document.cookie = "selecteditems=AJR,";
+		console.log(document.cookie);
+		window.location.href = "recom.html";
 	}
 
 	function Pop(){
 		document.cookie = "typeSelected=Genre";
   		document.cookie = "selecteditems=Pop,";
+		console.log(document.cookie);
 	}
 
 	function Rock(){
 		document.cookie = "typeSelected=Genre";
   		document.cookie = "selecteditems=Rock,";
+		console.log(document.cookie);
 	}
+
+	document.getElementById("popbutton").addEventListener("click",Pop);
+	document.getElementById("ajrbutton").addEventListener("click",AJR);
+	document.getElementById("rockbutton").addEventListener("click",Rock);
 	</script>
 
 </body>
