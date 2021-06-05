@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+		<title>Music Match</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../styles.css" />
+<style>
+  body {
+  font-family: "Lato", sans-serif;
+  background-color: #111;
+}
+#trigger{
+display: none;
+}
+.checker {
+  background-image: url(../src/images/poptint.png);
+  background-position: left center;
+  background-size: auto 100%;
+  width: 900px;
+  height: 400px;
+  background-repeat: no-repeat;
+}
+#trigger:checked + .checker {
+  background-image: url(../src/images/pop.png);
+}
+#trigger2{
+display: none;
+}
+.checker2 {
+  background-image: url(../src/images/rocktint.png);
+  background-position: left center;
+  background-size: auto 100%;
+  width: 575px;
+  height: 400px;
+  background-repeat: no-repeat;
+}
+#trigger2:checked + .checker2 {
+  background-image: url(../src/images/rock.png);
+}
+#trigger3{
+display: none;
+}
+.checker3 {
+  background-image: url(../src/images/soultint.png);
+  background-position: left center;
+  background-size: auto 100%;
+  width: 575px;
+  height: 400px;
+  background-repeat: no-repeat;
+}
+#trigger3:checked + .checker3 {
+  background-image: url(../src/images/soul.png);
+}
+#trigger4{
+display: none;
+}
+.checker4 {
+  background-image: url(../src/images/electronictint.png);
+  background-position: left center;
+  background-size: auto 100%;
+  width: 575px;
+  height: 400px;
+  background-repeat: no-repeat;
+}
+#trigger4:checked + .checker4 {
+  background-image: url(../src/images/electronic.png);
+}
+.sidenav {
+  height: 100%;
+  width: 450px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:rgb(5,5,5);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.main {
+  margin-left: 160px; 
+  font-size: 15px; 
+  padding: 0px 350px;
+  color: azure;
+}
+
+</style>
+</head>
+<body id="body_it">
+		<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">Music Match</a>
+					<nav id="nav">
+							<a href="../index.html">Home</a>
+							<a href="about.html">About</a>
+							<a href="explore.html">Explore</a>
+              <a href="mylib.html">My Library</a>
+              <a id="logged" href="userinfo.html"> My Profile </a>
+				      <a id="notlogged" href="login.html">Login</a>
+					</nav>
+
+				</div>
+			</header>
+<br><br><br>
+
+<div class="sidenav">
+  <br><br><br>
+  <br><br><br>
+  <br><br><br>
+  
+    
+    <a href="#"><h4>Pick By Genre</h4></a>
+    
+  </div>
+<div class="main">
+    <h4>Genres Available</h4>
+    <br><br>
+    <header>
+      <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        Pop</h3>
+    </header>
+<input id="trigger" name="genre" type="checkbox" value="Pop">
+
+<label for="trigger" class="checker"></label>
+<header>
+    <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      Rock</h3>
+  </header>
+<input id="trigger2" name="genre" type="checkbox" value="Rock">
+<label for="trigger2" class="checker2"></label>
+<header>
+    <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      Soul</h3>
+  </header>
+<input id="trigger3" name="genre" type="checkbox" value="Soul">
+<label for="trigger3" class="checker3"></label>
+<header>
+    <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      Electronic</h3>
+
+  </header>
+  
+<input id="trigger4" name="genre" type="checkbox" value="Electronic">
+<label for="trigger4" class="checker4"></label>
+<ul class="actions">
+    &nbsp;<li><a href="recom.html" class="button alt" id="send_it" onclick="printChecked()"><h2>Next</h2></a></li>
+    </ul>
+</body>
+<script>
+  var checkedValue = null; 
+
+function printChecked(){
+
+  var items=document.getElementsByName('genre');
+  var selectedItems="";
+  var count = 0;
+  
+  for(var i=0; i<items.length; i++){
+    if(items[i].type=='checkbox' && items[i].checked==true){
+      selectedItems+= items[i].value+",";
+      count+=1;
+    }
+  }
+
+  document.cookie = "typeSelected=Genre";
+  document.cookie = "selecteditems="+selectedItems;
+
+  var x=document.cookie;
+  console.log(x);
+  
+        
+}
+
+  </script>
+
+<script src="/__/firebase/7.5.0/firebase-app.js"></script>
+<script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+<script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+<script src="/__/firebase/init.js"></script>
+<script src="../src/scripts/logincheck.js"></script>
+
+</html> 
+

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<title>Music Match</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  * {
+    box-sizing: border-box
+  }
+
+  .mySlides1,
+  .mySlides2 {
+    display: none
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  #body_it {
+    background-color: #000000;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a grey background color */
+  .prev:hover,
+  .next:hover {
+    background-color: #f1f1f1;
+    color: black;
+  }
+</style>
+</head>
+
+<body id="body_it">
+  <header id="header">
+    <div class="inner">
+      <a href="index.html" class="logo">Music Match</a>
+      <nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/explore.html">Explore</a>
+        <a href="pages/mylib.html">My Library</a>
+        <a id="logged" href="pages/userinfo.html"> My Profile </a>
+				<a id="notlogged" href="pages/login.html">Login</a>
+      </nav>
+
+    </div>
+  </header>
+  <br><br><br><br><br><br><br>
+  <h2 style="text-align:center">Our Recommendation:</h2>
+
+  <p>Slideshow 1:</p>
+  <div class="slideshow-container">
+
+    <div class="embededSongDiv">
+      <center> <iframe id="embededSong" src="" width="300"
+          height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> </center>
+    </div>
+
+    <a class="prev" onclick="refresh()">Dislike</a>
+    <a class="next" onclick="refresh()">Like</a>
+
+  </div>
+  <center> <input type="button" value="Add   to   Library" id="addtoLib"> </center>
+
+
+  <br><br><br><br><br><br><br>
+
+
+
+  <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+  <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="/src/scripts/logincheck.js"></script>
+
+  <script>
+    var db = firebase.firestore();
+
+    function choose(choices) {
+      var index = Math.floor(Math.random() * choices.length);
+      return choices[index];
+    }
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    function refresh() {
+
+
+      items = getCookie("selecteditems").split(",");
+      items.pop()
+      var x = choose(items);
+      console.log(items);
+      console.log(x);
+
+      getSong(getCookie("typeSelected"), x);
+    }
+
+    function getSong(type, genre) {
+      var x = type + "/" + genre;
+      console.log(x);
+
+      var docRef = db.doc(x);
+      docRef.get().then(function (doc) {
+        if (doc && doc.exists) {
+          const myData = doc.data();
+          
+          var x = Math.floor(Math.random() * 5);
+          
+          if(type == "Genre"){
+            x = Math.floor(Math.random() * 10);
+          }
+
+          document.getElementById("embededSong").src = myData[x]
+        } else {
+          console.log("Doesnt exist");
+        }
+      }).catch(function (error) {
+        console.log("Error! :", error);
+      })
+
+    }
+
+    function addSongtoLib() {
+      var user = firebase.auth().currentUser;
+      console.log(user);
+
+      if (user) {
+        console.log("User is logged in");
+        var toWrite = document.getElementById("embededSong").src;
+        var uid = user.uid;
+        console.log(uid)
+        var docRef = db.collection("users").doc(uid);
+
+        docRef.set({
+          set: true
+        }, { merge: true });
+
+        docRef.update({
+          songs: firebase.firestore.FieldValue.arrayUnion(toWrite)
+        });
+      }
+      else {
+        alert("Error!: You must be logged in to use this")
+      }
+
+    }
+  </script>
+
+  <script>
+    document.getElementById("addtoLib").addEventListener("click", addSongtoLib);
+    window.addEventListener("load", refresh);
+  </script>
+
+  
+
+</body>
+
+</html>

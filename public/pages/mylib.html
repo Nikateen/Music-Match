@@ -1,0 +1,282 @@
+<html>
+
+<head>
+
+
+    <title>Music Match</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../styles.css" />
+
+
+    <style>
+        body {
+        font-family: "Lato", sans-serif;
+        background-color: #111;
+      }
+      #trigger{
+      display: none;
+      }
+      .checker {
+        background-image: url(../src/images/poptint.png);
+        background-position: left center;
+        background-size: auto 100%;
+        width: 900px;
+        height: 400px;
+        background-repeat: no-repeat;
+      }
+      #trigger:checked + .checker {
+        background-image: url(../src/images/pop.png);
+      }
+      #trigger2{
+      display: none;
+      }
+      .checker2 {
+        background-image: url(../src/images/rocktint.png);
+        background-position: left center;
+        background-size: auto 100%;
+        width: 575px;
+        height: 400px;
+        background-repeat: no-repeat;
+      }
+      #trigger2:checked + .checker2 {
+        background-image: url(../src/images/rock.png);
+      }
+      #trigger3{
+      display: none;
+      }
+      .checker3 {
+        background-image: url(../src/images/soultint.png);
+        background-position: left center;
+        background-size: auto 100%;
+        width: 575px;
+        height: 400px;
+        background-repeat: no-repeat;
+      }
+      #trigger3:checked + .checker3 {
+        background-image: url(../src/images/soul.png);
+      }
+      #trigger4{
+      display: none;
+      }
+      .checker4 {
+        background-image: url(../src/images/electronictint.png);
+        background-position: left center;
+        background-size: auto 100%;
+        width: 575px;
+        height: 400px;
+        background-repeat: no-repeat;
+      }
+      #trigger4:checked + .checker4 {
+        background-image: url(../src/images/electronic.png);
+      }
+      .sidenav {
+        height: 100%;
+        width: 450px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color:rgb(5,5,5);
+        overflow-x: hidden;
+        padding-top: 20px;
+      }
+      
+      .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+      }
+      
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+      .main {
+        margin-left: 160px; 
+        font-size: 15px; 
+        padding: 0px 350px;
+        color: azure;
+      }
+      
+      </style>
+
+</head>
+
+<body id="body_it">
+    <style>
+        #body_it {
+            background-color: black;
+        }
+    </style>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <a href="../index.html" class="logo">Music Match</a>
+            <nav id="nav">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="explore.html">Explore</a>
+                <a href="mylib.html">My Library</a>
+                <a id="logged" href="userinfo.html"> My Profile </a>
+                <a id="notlogged" href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+    <div class="sidenav">
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        
+          
+        <a href="#"><h4>My Library</h4></a>
+          
+    </div>
+
+    <br>
+    <div class="main" id="container" style="color: aliceblue;">
+    </div>
+
+
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="../src/scripts/logincheck.js"></script>
+
+    
+
+
+    <script>
+        function removeEle(source){
+            
+        }
+
+        function setEle(source) {
+
+            var divx = document.createElement("div");
+
+
+            var item = document.createElement("iframe");
+            item.width = "300";
+            item.height = "380";
+            item.frameborder = "0";
+            item.allowtransparency = "true";
+            item.allow = "encrypted-media";
+            item.src = source;
+
+
+            var remove = document.createElement("input")
+            remove.type = "button"
+            remove.value = "Remove from playlist"
+            remove.id = source;
+            remove.onclick = function () {
+                this.parentElement.removeChild(this);
+                //this.parentElement.removeChild(source);
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if(user){
+                        var uid = user.uid;
+                        
+                        var db = firebase.firestore();
+                        var docRef = db.collection("users").doc(uid);
+                        console.log("removing");
+                        docRef.update({
+                            songs: firebase.firestore.FieldValue.arrayRemove(source)
+                        });
+                        console.log("removed");
+                        setTimeout(function(){window.location.reload(true); }, 1000);
+                        
+                    }
+                } )
+            }
+            
+           
+
+            divx.appendChild(item);
+            //divx.appendChild(remove);
+            document.getElementById("container").appendChild(divx);
+            document.getElementById("container").appendChild(remove);
+
+            document.getElementById("container").appendChild( document.createElement("br") );
+            document.getElementById("container").appendChild( document.createElement("br") );
+            document.getElementById("container").appendChild( document.createElement("br") );
+
+            //document.getElementById(source).addEventListener("click",removeEle(source) );
+        }
+    </script>
+
+    <script>
+
+        var user = firebase.auth();
+        console.log("um", user);
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var uid = user.uid
+                var db = firebase.firestore();
+                var docRef = db.collection("users").doc(uid);
+                docRef.get().then(function (doc) {
+                    if (doc.exists) {
+                        console.log("Document data:", doc.data());
+                        var x = doc.data()["songs"];
+                        console.log("songs", x)
+
+                        if (x.length > 0) {
+                            for (i = 0; i < x.length; i++) {
+                                setEle(x[i]);
+                                //document.getElementById(x[i]).addEventListener("click",removeEle)
+                            }
+                        } else {
+                            x = document.getElementById("container").appendChild( document.createElement("center") );
+                            l = document.createElement("h4");
+                            l.innerHTML = "No songs in your library";
+                            x.appendChild(l);
+                            document.getElementById("container").appendChild( l );
+                        }
+
+
+
+
+
+
+
+
+
+                    } else {
+                        // doc.data() will be undefined in this case
+                        x = document.getElementById("container").appendChild( document.createElement("center") );
+                            l = document.createElement("h4");
+                            l.innerHTML = "No songs in your library";
+                            x.appendChild(l);
+                            document.getElementById("container").appendChild( l );
+                    }
+                }).catch(function (error) {
+                    console.log("Error getting document:", error);
+                });
+            } else {
+                // No user is signed in.
+                x = document.getElementById("container").appendChild( document.createElement("center") );
+                            l = document.createElement("h4");
+                            l.innerHTML = "You must log in to view this page";
+                            x.appendChild(l);
+                            document.getElementById("container").appendChild( l );
+            }
+        });
+
+
+
+
+
+    </script>
+    
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<!--
+	Introspect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>Music Match</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="styles.css" media="screen"/>
+</head>
+
+<body id="body_it">
+	<style>
+		#body_it {
+			background-color: black;
+		}
+	</style>
+
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="logo">Music Match</a>
+			<nav id="nav">
+				<a href="index.html">Home</a>
+				<a href="./pages/about.html">About</a>
+				<a href="./pages/explore.html">Explore</a>
+				<a href="./pages/mylib.html">My Library</a>
+				<a id="logged" href="./pages/userinfo.html"> My Profile </a>
+				<a id="notlogged" href="./pages/login.html">Login</a>
+				
+				
+			</nav>
+		</div>
+	</header>
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+	<section id="banner">
+		<div class="inner">
+			<h1>Music Match : <span>Dropping em beats like we mean it<br />
+				</span></h1>
+			<ul class="actions">
+				<li><a href="./pages/genre.html" class="button alt">Pick By Genre</a></li>
+				<li><a href="./pages/artists.html" class="button alt">Pick By Artist</a></li>
+
+			</ul>
+		</div>
+	</section>
+	
+	<section id="three">
+		<h2>&emsp;&emsp;&emsp;Our Top picks:</h2>
+		<br><br><br>
+		<div class="inner">
+			
+			
+			<article>
+				<div class="content">
+					<header>
+						<h3>Pop</h3>
+					</header>
+					<p>We'll keep you bouncing on your feet<br></p>
+					<ul class="actions">
+						<li><a href="recom.html" class="button alt" id = "popbutton">Yas</a></li>
+					</ul>
+				</div>
+			</article>
+			<article>
+				<div class="content">
+
+					<header>
+						<h3>AJR</h3>
+					</header>
+					<p>Here's a great band for you to checkout<br></p>
+					<ul class="actions">
+						<li><a href="recom.html" class="button alt" id="ajrbutton" >Take it all in</a></li>
+					</ul>
+				</div>
+			</article>
+			<article>
+				<div class="content">
+
+					<header>
+						<h3>Rock</h3>
+					</header>
+					<p>Listen to the best of the best</p>
+					<ul class="actions">
+						<li><a href="recom.html" class="button alt" id="rockbutton">Get ready to let your hair down</a></li>
+					</ul>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<!-- 
+	<section id="footer">
+		<div class="inner">
+			<header>
+				<h2>Get in Touch</h2>
+			</header>
+			<form method="post" action="#">
+				<div class="field half first">
+					<label for="name">Name</label>
+					<input type="text" name="name" id="name" />
+				</div>
+				<div class="field half">
+					<label for="email">Email</label>
+					<input type="text" name="email" id="email" />
+				</div>
+				<div class="field">
+					<label for="message">Message</label>
+					<textarea name="message" id="message" rows="6"></textarea>
+				</div>
+				<ul class="actions">
+					<li><input type="submit" value="Send Message" class="alt" /></li>
+				</ul>
+			</form>
+		</div>
+	</section>
+	Footer -->
+
+	<!-- Scripts -->
+	
+
+
+
+	<script src="/__/firebase/7.5.0/firebase-app.js"></script>
+	<script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+	<script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+	<script src="/__/firebase/init.js"></script>
+	<script src="./src/scripts/logincheck.js"></script>
+	
+	<script src="./src/scripts/jquery.min.js"></script>
+	<script src="./src/scripts/skel.min.js"></script>
+	<script src="./src/scripts/util.js"></script>
+	<script src="./src/scripts/main.js"></script>
+
+	<script>
+	function AJR(){
+		document.cookie = "typeSelected=Artists";
+  		document.cookie = "selecteditems=AJR,";
+		console.log(document.cookie);
+		window.location.href = "recom.html";
+	}
+
+	function Pop(){
+		document.cookie = "typeSelected=Genre";
+  		document.cookie = "selecteditems=Pop,";
+		console.log(document.cookie);
+	}
+
+	function Rock(){
+		document.cookie = "typeSelected=Genre";
+  		document.cookie = "selecteditems=Rock,";
+		console.log(document.cookie);
+	}
+
+	document.getElementById("popbutton").addEventListener("click",Pop);
+	document.getElementById("ajrbutton").addEventListener("click",AJR);
+	document.getElementById("rockbutton").addEventListener("click",Rock);
+	</script>
+
+</body>
+
+</html>
